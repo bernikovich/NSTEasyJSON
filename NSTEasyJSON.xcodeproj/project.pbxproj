@@ -13,6 +13,7 @@
 		B04DF21E1E029E1100DE437C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04DF21C1E029E1100DE437C /* Main.storyboard */; };
 		B04DF2201E029E1100DE437C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B04DF21F1E029E1100DE437C /* Assets.xcassets */; };
 		B04DF2231E029E1100DE437C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04DF2211E029E1100DE437C /* LaunchScreen.storyboard */; };
+		B04DF2501E02A47D00DE437C /* NSTEasyJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B04DF24F1E02A47D00DE437C /* NSTEasyJSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		B04DF21F1E029E1100DE437C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B04DF2221E029E1100DE437C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B04DF2241E029E1100DE437C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B04DF24E1E02A47D00DE437C /* NSTEasyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTEasyJSON.h; path = Classes/NSTEasyJSON.h; sourceTree = "<group>"; };
+		B04DF24F1E02A47D00DE437C /* NSTEasyJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSTEasyJSON.m; path = Classes/NSTEasyJSON.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		B04DF2121E029E1100DE437C /* NSTEasyJSON */ = {
 			isa = PBXGroup;
 			children = (
+				B04DF24D1E02A45E00DE437C /* Classes */,
 				B04DF2161E029E1100DE437C /* AppDelegate.h */,
 				B04DF2171E029E1100DE437C /* AppDelegate.m */,
 				B04DF2191E029E1100DE437C /* ViewController.h */,
@@ -77,6 +81,15 @@
 				B04DF2141E029E1100DE437C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B04DF24D1E02A45E00DE437C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B04DF24E1E02A47D00DE437C /* NSTEasyJSON.h */,
+				B04DF24F1E02A47D00DE437C /* NSTEasyJSON.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B04DF21B1E029E1100DE437C /* ViewController.m in Sources */,
+				B04DF2501E02A47D00DE437C /* NSTEasyJSON.m in Sources */,
 				B04DF2181E029E1100DE437C /* AppDelegate.m in Sources */,
 				B04DF2151E029E1100DE437C /* main.m in Sources */,
 			);
