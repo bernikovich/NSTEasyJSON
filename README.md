@@ -52,8 +52,6 @@ NSString *userName = JSON[0]["user"]["name"].string;
 
 And don't worry about the NSNull, out of bounds or other unexpected things. It's done for you automatically.
 
-```
-
 ## Requirements
 
 - iOS 7.0+ | macOS 10.10+ | tvOS 9.0+ | watchOS 2.0+
