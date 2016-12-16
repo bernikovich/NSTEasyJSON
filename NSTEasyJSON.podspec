@@ -7,4 +7,5 @@ Pod::Spec.new do |spec|
   spec.summary      = 'Typesafe collection usage.'
   spec.source       = { :git => 'https://github.com/bernikowich/NSTEasyJSON.git', :tag => spec.version }
   spec.source_files = 'NSTEasyJSON/Classes/NSTEasyJSON.{h,m}'
+  spec.module_name  = 'NSTEasyJSON'
 end
