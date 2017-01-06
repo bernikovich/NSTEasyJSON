@@ -161,7 +161,7 @@
 - (nonnull NSNumber *)numberValue
 {
     if ([self.currentObject isKindOfClass:[NSNumber class]]) {
-        return self.numberValue;
+        return self.currentObject;
     }
     
     return @(0);
