@@ -17,10 +17,14 @@
 - (nonnull instancetype)objectForKeyedSubscript:(nonnull id)key;
 - (nonnull instancetype)objectAtIndexedSubscript:(NSUInteger)index;
 
+@property (nonatomic, readonly) BOOL exists;
+
 // Values.
 // TODO: Properties `object` and `currentObject` should be moved
 // to header. This will allow to create custom value parsers
 // for any class.
+
+@property (nonatomic, readonly, nullable) NSArray<NSTEasyJSON *> *JSONArray;
 
 @property (nonatomic, readonly, nullable) NSDictionary *dictionary;
 @property (nonatomic, readonly, nonnull) NSDictionary *dictionaryValue;

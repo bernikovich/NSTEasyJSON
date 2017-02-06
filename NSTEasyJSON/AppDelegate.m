@@ -30,7 +30,17 @@
     
     NSTEasyJSON *JSON = [NSTEasyJSON withObject:someDictionary];
     NSString *secondBookTitle = JSON[@"books"][0][@"title"].stringValue;
+    NSLog(@"%@", secondBookTitle);
+    
     NSString *firstBookPrecededBy = JSON[@"books"][0][@"precededBy"].string;
+    NSLog(@"%@", firstBookPrecededBy);
+    
+    NSDictionary *dictionary = @{@"array":@[@{@"key":@"value"}]};
+    NSTEasyJSON *JSONWithArray = [NSTEasyJSON withObject:dictionary];
+    for (NSTEasyJSON *arrayItemJSON in JSONWithArray[@"array"].JSONArray) {
+        NSString *value = arrayItemJSON[@"key"].string;
+        NSLog(@"%@", value);
+    }
     
     return YES;
 }

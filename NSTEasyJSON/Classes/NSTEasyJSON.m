@@ -41,7 +41,7 @@
 
 - (nonnull instancetype)childWithChildObject:(id)childObject
 {
-    NSTEasyJSON *JSON = [[self class] withObject:self.object];
+    NSTEasyJSON *JSON = [self.class withObject:self.object];
     JSON.currentObject = childObject;
     return JSON;
 }
@@ -49,7 +49,7 @@
 - (nonnull instancetype)objectForKeyedSubscript:(nonnull id)key
 {
     id object;
-    if ([key isKindOfClass:[NSString class]] && [self.currentObject isKindOfClass:[NSDictionary class]]) {
+    if ([key isKindOfClass:NSString.class] && [self.currentObject isKindOfClass:NSDictionary.class]) {
         object = self.currentObject[key];
     }
     
@@ -64,7 +64,7 @@
 - (nonnull instancetype)objectAtIndexedSubscript:(NSUInteger)index
 {
     id object;
-    if ([self.currentObject isKindOfClass:[NSArray class]]) {
+    if ([self.currentObject isKindOfClass:NSArray.class]) {
         object = self.currentObject[index];
     }
     
@@ -83,11 +83,56 @@
     return _currentObject ?: self.object;
 }
 
-#pragma mark - Values
+#pragma mark - Description
+
+- (NSString *)debugDescription
+{
+    NSString *className;
+    Class currentObjectClass = [self.currentObject class];
+    if (currentObjectClass != NULL) {
+        className = NSStringFromClass(currentObjectClass);
+    }
+    
+    NSString *objectDescription;
+    if (className) {
+        objectDescription = [NSString stringWithFormat:@"%@ : %@", className, self.currentObject];
+    } else {
+        objectDescription = [NSString stringWithFormat:@"%@", self.currentObject];
+    }
+    
+    return [NSString stringWithFormat:@"%@ - %@", [super debugDescription], objectDescription];
+}
+
+#pragma mark - Existence
+
+- (BOOL)exists
+{
+    return (self.currentObject && ![self.currentObject isKindOfClass:NSTEasyJSONEmptyObject.class]);
+}
+
+#pragma mark - Values: Special
+
+- (nullable NSArray<NSTEasyJSON *> *)JSONArray
+{
+    NSArray *array = self.array;
+    if (!array.count) {
+        return nil;
+    }
+    
+    NSMutableArray<NSTEasyJSON *> *JSONArray = [NSMutableArray new];
+    for (id<NSCopying> object in array) {
+        // Maybe we need to check if object conforms to NSCopying protocol.
+        [JSONArray addObject:[NSTEasyJSON withObject:object]];
+    }
+    
+    return JSONArray;
+}
+
+#pragma mark - Values: Objects
 
 - (nullable NSDictionary *)dictionary
 {
-    if ([self.currentObject isKindOfClass:[NSDictionary class]]) {
+    if ([self.currentObject isKindOfClass:NSDictionary.class]) {
         return self.currentObject;
     }
     
@@ -96,7 +141,7 @@
 
 - (nonnull NSDictionary *)dictionaryValue
 {
-    if ([self.currentObject isKindOfClass:[NSDictionary class]]) {
+    if ([self.currentObject isKindOfClass:NSDictionary.class]) {
         return self.currentObject;
     }
     
@@ -105,7 +150,7 @@
 
 - (nullable NSArray *)array
 {
-    if ([self.currentObject isKindOfClass:[NSArray class]]) {
+    if ([self.currentObject isKindOfClass:NSArray.class]) {
         return self.currentObject;
     }
     
@@ -114,7 +159,7 @@
 
 - (nonnull NSArray *)arrayValue
 {
-    if ([self.currentObject isKindOfClass:[NSArray class]]) {
+    if ([self.currentObject isKindOfClass:NSArray.class]) {
         return self.currentObject;
     }
     
@@ -123,7 +168,7 @@
 
 - (nullable NSString *)string
 {
-    if ([self.currentObject isKindOfClass:[NSString class]]) {
+    if ([self.currentObject isKindOfClass:NSString.class]) {
         return self.currentObject;
     }
     
@@ -132,7 +177,7 @@
 
 - (nonnull NSString *)stringValue
 {
-    if ([self.currentObject isKindOfClass:[NSString class]]) {
+    if ([self.currentObject isKindOfClass:NSString.class]) {
         return self.currentObject;
     }
     
@@ -141,7 +186,7 @@
 
 - (nullable NSURL *)URL
 {
-    if ([self.currentObject isKindOfClass:[NSString class]]) {
+    if ([self.currentObject isKindOfClass:NSString.class]) {
         NSURL *URL = [NSURL URLWithString:self.currentObject];
         return URL;
     }
@@ -151,7 +196,7 @@
 
 - (nullable NSNumber *)number
 {
-    if ([self.currentObject isKindOfClass:[NSNumber class]]) {
+    if ([self.currentObject isKindOfClass:NSNumber.class]) {
         return self.currentObject;
     }
     
@@ -160,12 +205,14 @@
 
 - (nonnull NSNumber *)numberValue
 {
-    if ([self.currentObject isKindOfClass:[NSNumber class]]) {
+    if ([self.currentObject isKindOfClass:NSNumber.class]) {
         return self.currentObject;
     }
     
     return @(0);
 }
+
+#pragma mark - Values: Primitives
 
 - (NSInteger)integerValue
 {
