@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'NSTEasyJSON'
-  spec.version      = '1.0.4'
+  spec.version      = '1.0.5'
   spec.license      = { :type => 'MIT' }
   spec.homepage     = 'https://github.com/bernikowich/NSTEasyJSON'
   spec.authors      = { 'Timur Bernikovich' => 'bernikowich@icloud.com' }
