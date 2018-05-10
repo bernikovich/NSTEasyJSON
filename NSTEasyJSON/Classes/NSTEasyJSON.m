@@ -80,7 +80,12 @@
 
 - (nullable id)currentObject
 {
-    return _currentObject ?: self.object;
+    return _currentObject ?: _object;
+}
+
+- (nullable id)object
+{
+    return self.currentObject;
 }
 
 #pragma mark - Description
@@ -179,6 +184,60 @@
 {
     if ([self.currentObject isKindOfClass:NSString.class]) {
         return self.currentObject;
+    }
+    
+    return @"";
+}
+
+- (nonnull NSString *)jsonStringValue
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_currentObject options:0 error:&error];
+    
+    if (jsonData) {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    return @"";
+}
+
+- (nullable NSString *)forceToString
+{
+    if ([self.currentObject isKindOfClass:NSString.class]) {
+        return self.stringValue;
+    }
+    
+    if ([self.currentObject isKindOfClass:NSNumber.class]) {
+        return [NSString stringWithFormat:@"%@", self.numberValue];
+    }
+    
+    if ([self.currentObject isKindOfClass:NSDictionary.class]) {
+        return self.jsonStringValue;
+    }
+    
+    if ([self.currentObject isKindOfClass:NSArray.class]) {
+        return self.jsonStringValue;
+    }
+    
+    return nil;
+}
+
+- (nonnull NSString *)forceToStringValue
+{
+    if ([self.currentObject isKindOfClass:NSString.class]) {
+        return self.stringValue;
+    }
+    
+    if ([self.currentObject isKindOfClass:NSNumber.class]) {
+        return [NSString stringWithFormat:@"%@", self.numberValue];
+    }
+    
+    if ([self.currentObject isKindOfClass:NSDictionary.class]) {
+        return self.jsonStringValue;
+    }
+    
+    if ([self.currentObject isKindOfClass:NSArray.class]) {
+        return self.jsonStringValue;
     }
     
     return @"";
