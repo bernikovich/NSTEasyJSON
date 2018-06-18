@@ -42,6 +42,33 @@
         NSLog(@"%@", value);
     }
     
+    
+    NSDictionary *dict = @{
+                           @"bar": @123.213212,
+                           @"foo": @"Hello",
+                           @"array": @[ @"a", @"b" ],
+                           @"dict" : @{ @"a": @1.123, @"b": @123 }
+                           };
+    
+    //    NSError *error;
+    //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+    //    NSTEasyJSON *JSON = [NSTEasyJSON withData:jsonData];
+    
+    NSTEasyJSON *JSON2 = [NSTEasyJSON withObject:dict];
+    
+    NSLog(@"forceToStringValue key: nil   -> %@", JSON2[@"nil"].forceToString);
+    NSLog(@"forceToStringValue key: nil   -> %@", JSON2[@"nil"].forceToStringValue);
+    NSLog(@"forceToStringValue key: bar   -> %@", JSON2[@"bar"].forceToStringValue);
+    NSLog(@"forceToStringValue key: foo   -> %@", JSON2[@"foo"].forceToStringValue);
+    NSLog(@"forceToStringValue key: array -> %@", JSON2[@"array"].forceToStringValue);
+    NSLog(@"forceToStringValue key: dict  -> %@", JSON2[@"dict"].forceToStringValue);
+    
+    NSLog(@"object key: bar   -> %@", JSON2.object);
+    NSLog(@"object key: bar   -> %@", JSON2[@"bar"].object);
+    NSLog(@"object key: foo   -> %@", JSON2[@"foo"].object);
+    NSLog(@"object key: array -> %@", JSON2[@"array"].object);
+    NSLog(@"object key: dict  -> %@", JSON2[@"dict"].object);
+    
     return YES;
 }
 

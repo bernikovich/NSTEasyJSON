@@ -17,6 +17,8 @@
 - (nonnull instancetype)objectForKeyedSubscript:(nonnull id)key;
 - (nonnull instancetype)objectAtIndexedSubscript:(NSUInteger)index;
 
+- (nullable id)object;
+
 @property (nonatomic, readonly) BOOL exists;
 
 // Values.
@@ -34,6 +36,9 @@
 
 @property (nonatomic, readonly, nullable) NSString *string;
 @property (nonatomic, readonly, nonnull) NSString *stringValue;
+
+@property (nonatomic, readonly, nullable) NSString *forceToString;
+@property (nonatomic, readonly, nonnull) NSString *forceToStringValue;
 
 @property (nonatomic, readonly, nullable) NSURL *URL;
 
