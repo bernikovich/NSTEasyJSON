@@ -35,7 +35,8 @@
 + (nonnull instancetype)withData:(nullable NSData *)data
 {
     NSError *error;
-    id object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSData *objectData = data ?: [NSData new];
+    id object = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingAllowFragments error:&error];
     return [self withObject:object];
 }
 
